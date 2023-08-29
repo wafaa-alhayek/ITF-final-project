@@ -15,7 +15,7 @@ class Student:
         self.student_courses = []
 
     def add_course(self, course):
-        if course.course_level == course.student_level:
+        if course.course_level == self.student_level:
             self.student_courses.append(course)
             print("course added successfully")
         else:
@@ -27,10 +27,14 @@ class Student:
         print("Course:", self.student_courses)
 
 
-courses = []
-students = []
+courses = [Course(1, "Math", "A"), Course(2, "Science", "B")]
+students = [Student(1, "Alice", "A"), Student(2, "Bob", "B")]
+
+print("Number of students:", len(students))
+print("Number of courses:", len(courses))
+
 while True:
-    print("Select Choice Please:")
+    print("Select Choice Please")
     print("1. Add New Student")
     print("2. Remove Student")
     print("3. Edit Student")
@@ -38,11 +42,11 @@ while True:
     print("5. Create New Course")
     print("6. Add Course to Student")
     print("0. Exit")
-    choice = input("Enter your choice")
+    choice = input("Enter your choice : ")
 
     if choice == "1":
-        new_student_name = input("Enter Student Name")
-        new_student_level = input("Enter Student Level").upper()
+        new_student_name = input("Enter Student Name : ")
+        new_student_level = input("Enter Student Level : ").upper()
         new_student_id = len(students) + 1
         if new_student_level not in ["A", "B", "C"]:
             print("Please Enter a Valid Student Level")
@@ -88,11 +92,21 @@ while True:
         new_course_id = len(courses) + 1
         new_course = Course(new_course_id, course_name_input, course_level_input)
         courses.append(new_course)
+        print("new course added")
 
     elif choice == "6":
         student_id_enroll = int(input("Enter your student ID : "))
         student_level_enroll = input("Enter your level : ")
         course_id_enroll = int(input("Enter your course ID : "))
+
+        # import sys
+        # sys.stdout.flush()
+        #
+        #
+
+        # print("Number of students:", len(students))
+        # print("Number of courses:", len(courses))
+
         if 0 <= student_id_enroll < len(students) and 0 <= course_id_enroll < len(courses):
             student = students[student_id_enroll - 1]
             course = courses[course_id_enroll - 1]
@@ -107,11 +121,3 @@ while True:
 
     else:
         print("Enter a valid option...")
-
-
-
-
-
-
-
-
